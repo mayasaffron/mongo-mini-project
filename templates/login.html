@@ -4,12 +4,12 @@
 
 <!--username-->
  <div class="row">
- <h3 class="center-align"> Register here </h3>
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+ <h3 class="center-align"> Login here </h3>
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
       <div class="card-panel ">
         <div class="row">
         <div class="input-field col s12">
-          <i class="fas fa-user-plus prefix blue accent-3"></i>
+          <i class="fas fa-user-cog prefix blue accent-3"></i>
           <input id="username" name="username" type="text" minlength="5" maxlength="15" class="validate" required pattern="^[a-zA-Z0-9]{5,15}$">
           <label for="username">Username</label>
         </div>
@@ -22,9 +22,9 @@
           <label for="password">Password</label>
         </div>
 
-  <!--registration button -->
+  <!--login button -->
         <div class="row">
-        <button class="col s12 btn waves-effect waves-light cyan lighten-1 text-shadow" type="submit" name="action">Register
+        <button class="col s12 btn waves-effect waves-light cyan lighten-1 text-shadow" type="submit" name="action">Login
     <i class="fas fa-sign-in-alt right"></i>
   </button>
         </div>
@@ -32,9 +32,11 @@
     </form>
   </div>
 
-  <div class="row">
+<div class="row">
 <div class="col s12">
-<p class="center-align"> Already registered?
-<a class="light-blue-text text-darken-4" href="{{ url_for('login')}}"> login </a></p>
+<p class="center-align"> New Here?
+<a class="light-blue-text text-darken-4" href="{{ url_for('register')}}"> Register account </a></p>
 
+</div>
+</div>
   {% endblock %}
