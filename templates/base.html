@@ -33,6 +33,7 @@
           ></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="{{ url_for('get_tasks') }}">Home</a></li>
+            <li><a href="{{ (url_for('profile', username=session['user'])) }}">Profile</a></li>
             <li><a href="#">New Task</a></li>
             <li><a href="#">Manage Categories</a></li>
             <li><a href="{{ url_for('login') }}">Log in</a></li>
@@ -49,6 +50,7 @@
           Task manager
         </li>
         <li><a href="{{ url_for('get_tasks') }}">Home</a></li>
+        <li><a href="{{ (url_for('profile', username=session['user'])) }}">Profile</a></li>
         <li><a href="#">New Task</a></li>
         <li><a href="#">Manage Categories</a></li>
         <li><a href="{{ url_for('login') }}">Log in</a></li>
