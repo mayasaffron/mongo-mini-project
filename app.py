@@ -99,11 +99,13 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/add_task", methods=["GET", "POST"])
+@app.route("/add_task")
 def add_task():
-    return render_template("add_task.html")
+    print(mongo.db.categories)
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_task.html", categories=categories)
 
-    
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
