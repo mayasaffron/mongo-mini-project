@@ -102,12 +102,14 @@ def add_task():
     if request.method == "POST":
         # how to input a form into our mongo db
         is_urgent = "on" if request.form.get("is_urgent") else "off"
+        completed = "on" if request.form.get("completed") else "off"
         task = {
             "category_name": request.form.get("category_name"),
             "task_name": request.form.get("task_name"),
             "task_description": request.form.get("task_description"),
             "is_urgent": is_urgent,
             "due_date": request.form.get("due_date"),
+            "completed": completed,
             "created_by": session["user"]
         }
         mongo.db.tasks.insert_one(task)
@@ -122,12 +124,14 @@ def add_task():
 def edit_task(task_id):
     if request.method == "POST":
         is_urgent = "on" if request.form.get("is_urgent") else "off"
+        completed = "on" if request.form.get("completed") else "off"
         submit = {
             "category_name": request.form.get("category_name"),
             "task_name": request.form.get("task_name"),
             "task_description": request.form.get("task_description"),
             "is_urgent": is_urgent,
             "due_date": request.form.get("due_date"),
+            "completed": completed,
             "created_by": session["user"]
         }
         mongo.db.tasks.update({"_id": ObjectId(task_id)}, submit)
@@ -135,6 +139,13 @@ def edit_task(task_id):
     task = mongo.db.tasks.find_one({"_id": ObjectId(task_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("edit_task.html", task=task, categories=categories)
+
+
+@app.route("/delete_task/<task_id>")
+def delete_task(task_id):
+    mongo.db.tasks.remove({"_id": ObjectId(task_id)})
+    flash("Task has been deleted for you hun!")
+    return redirect(url_for("get_tasks"))
 
 
 if __name__ == "__main__":
