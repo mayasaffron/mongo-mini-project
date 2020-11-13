@@ -19,7 +19,7 @@
         <div class="card-action">
        
                <a href="{{ url_for('edit_category', category_id=category._id) }}" class="lime accent-3 btn-small purple-text">Edit category</a>
-               <a href="{{ url_for('get_categories') }}" class="orange darken-4 btn-small">Delete category</a>
+               <a href="{{ url_for('delete_category', category_id=category._id) }}" class="orange darken-4 btn-small">Delete category</a>
               
        
         </div>
